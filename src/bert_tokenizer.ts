@@ -36,7 +36,7 @@ class TrieNode {
   end = false;
   score: number;
   index: number;
-  constructor(private key: string) {}
+  constructor(private key?: string) {}
 
   getWord(): [string[], number, number] {
     const output: string[] = [];
@@ -54,7 +54,7 @@ class TrieNode {
 }
 
 class Trie {
-  private root = new TrieNode(null);
+  private root = new TrieNode(undefined);
 
   /**
    * Insert the bert vacabulary word into the trie.
@@ -65,7 +65,7 @@ class Trie {
   insert(word: string, score: number, index: number) {
     let node = this.root;
 
-    const symbols = [];
+    const symbols:string[] = [];
     for (const symbol of word) {
       symbols.push(symbol);
     }
@@ -239,7 +239,7 @@ export class BertTokenizer {
     });
 
     for (let i = 0; i < words.length; i++) {
-      const chars = [];
+      const chars:string[] = [];
       for (const symbol of words[i].text) {
         chars.push(symbol);
       }
